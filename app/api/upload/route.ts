@@ -3,8 +3,8 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
 
-// Admin emails that can always upload
-const ADMIN_EMAILS = ['sellosthoabala@gmail.com', 'simonthoabala208@gmail.com']
+// Admin email that can upload
+const ADMIN_EMAILS = ['simonthoabala208@gmail.com']
 
 export async function POST(request: NextRequest) {
   try {

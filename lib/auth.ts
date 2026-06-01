@@ -3,7 +3,7 @@ import { pool, db } from '@/lib/db'
 import { user } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 
-const ADMIN_EMAILS = ['sellosthoabala@gmail.com', 'simonthoabala208@gmail.com']
+const ADMIN_EMAILS = ['simonthoabala208@gmail.com']
 
 // Get the base URL for auth
 const getBaseURL = () => {

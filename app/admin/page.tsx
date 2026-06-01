@@ -9,8 +9,8 @@ import { getServices, getProducts, getProfessionals, getNews, getUsers, getInves
 
 export const dynamic = 'force-dynamic'
 
-// Admin emails that can always access
-const ADMIN_EMAILS = ['sellosthoabala@gmail.com', 'simonthoabala208@gmail.com']
+// Admin email that can access the dashboard
+const ADMIN_EMAILS = ['simonthoabala208@gmail.com']
 
 export default async function AdminPage() {
   const session = await auth.api.getSession({ headers: await headers() })

@@ -37,7 +37,7 @@ const navItems = [
   { label: "CONTACT", href: "/contact" },
 ]
 
-const ADMIN_EMAILS = ['sellosthoabala@gmail.com', 'simonthoabala208@gmail.com']
+const ADMIN_EMAILS = ['simonthoabala208@gmail.com']
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
