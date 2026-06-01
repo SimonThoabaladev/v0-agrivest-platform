@@ -64,7 +64,8 @@ export const auth = betterAuth({
   },
   advanced: {
     defaultCookieAttributes: {
-      sameSite: 'lax',
+      // Use 'none' for v0 preview iframe (cross-origin) or development, 'lax' for production
+      sameSite: process.env.V0_RUNTIME_URL || process.env.NODE_ENV === 'development' ? 'none' : 'lax',
       secure: process.env.NODE_ENV === 'production' || !!process.env.V0_RUNTIME_URL,
     },
   },
