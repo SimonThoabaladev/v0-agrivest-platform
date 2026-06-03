@@ -15,7 +15,7 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden">
       {/* Main Hero */}
-      <div className="relative min-h-[600px] bg-gradient-to-br from-[#1a3a1a] via-[#2d5a2d] to-[#1a3a1a]">
+      <div className="relative min-h-[500px] md:min-h-[600px] bg-gradient-to-br from-[#1a3a1a] via-[#2d5a2d] to-[#1a3a1a]">
         {/* Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-[#c4a43a]/10 rounded-full blur-3xl" />
@@ -28,27 +28,27 @@ export function HeroSection() {
           <Wheat className="absolute bottom-32 right-1/3 h-12 w-12 text-white/10" />
         </div>
 
-        <div className="container mx-auto px-4 py-20 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Content */}
-            <div className="text-white">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-                <Sprout className="h-4 w-4 text-[#c4a43a]" />
-                <span className="text-sm font-medium">AGRIVEST LIVESTOCK & AGRIBUSINESS ADVISORY</span>
+            <div className="text-white text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-4 md:mb-6">
+                <Sprout className="h-3 w-3 md:h-4 md:w-4 text-[#c4a43a]" />
+                <span className="text-xs md:text-sm font-medium">AGRIVEST LIVESTOCK & AGRIBUSINESS ADVISORY</span>
               </div>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-balance">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 md:mb-6 text-balance">
                 Systemizing Agriculture.
                 <span className="block text-[#c4a43a]">Empowering Farmers.</span>
                 Building The Future.
               </h1>
               
-              <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl leading-relaxed">
+              <p className="text-base md:text-lg lg:text-xl text-white/80 mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 Your all-in-one platform for agricultural products, expert advisory, business
                 solutions, investment opportunities and more.
               </p>
               
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 md:gap-4">
                 <Link href="/services">
                   <Button
                     variant="outline"

@@ -11,23 +11,23 @@ const benefits = [
 
 export function CapitalLinkageSection() {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-12 md:py-16 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-[#1a3a1a] text-center mb-10 flex items-center justify-center gap-2">
-          <span className="w-8 h-1 bg-[#c4a43a]"></span>
-          CAPITAL LINKAGE: TRIPARTITE AGREEMENT
-          <span className="w-8 h-1 bg-[#c4a43a]"></span>
+        <h2 className="text-2xl md:text-3xl font-bold text-[#1a3a1a] text-center mb-8 md:mb-10 flex flex-col sm:flex-row items-center justify-center gap-2">
+          <span className="hidden sm:block w-6 md:w-8 h-1 bg-[#c4a43a]"></span>
+          <span className="text-center">CAPITAL LINKAGE: TRIPARTITE AGREEMENT</span>
+          <span className="hidden sm:block w-6 md:w-8 h-1 bg-[#c4a43a]"></span>
         </h2>
 
-        <div className="grid lg:grid-cols-2 gap-10 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-10 items-center">
           {/* Diagram */}
-          <div className="relative">
+          <div className="relative order-2 lg:order-1">
             <div className="flex items-center justify-center">
-              <div className="grid grid-cols-3 gap-8 items-center w-full max-w-md">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 items-center w-full max-w-md">
                 {/* Investors */}
                 <div className="text-center">
-                  <div className="w-20 h-20 mx-auto bg-[#1a3a1a] rounded-full flex items-center justify-center mb-3">
-                    <Users className="h-10 w-10 text-white" />
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-[#1a3a1a] rounded-full flex items-center justify-center mb-3">
+                    <Users className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                   </div>
                   <h4 className="font-bold text-sm text-[#1a3a1a]">INVESTORS</h4>
                   <p className="text-xs text-muted-foreground">Provide Capital</p>
@@ -59,8 +59,8 @@ export function CapitalLinkageSection() {
               </div>
             </div>
 
-            {/* Connecting Lines */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
+            {/* Connecting Lines - hidden on mobile */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none hidden sm:block">
               <svg className="w-full h-full" viewBox="0 0 400 200" fill="none">
                 <path
                   d="M80 100 L200 100"
@@ -86,8 +86,8 @@ export function CapitalLinkageSection() {
           </div>
 
           {/* Benefits */}
-          <div className="bg-[#1a3a1a] rounded-lg p-8 text-white">
-            <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="bg-[#1a3a1a] rounded-lg p-6 md:p-8 text-white order-1 lg:order-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               {benefits.map((benefit) => (
                 <div key={benefit.label} className="flex items-center gap-3">
                   <div className="p-2 bg-[#c4a43a] rounded-lg">

@@ -38,22 +38,22 @@ export default function Footer() {
       {/* Newsletter Section */}
       <div className="border-b border-white/20">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <h3 className="font-semibold text-lg">SUBSCRIBE TO OUR NEWSLETTER</h3>
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div className="text-center lg:text-left">
+              <h3 className="font-semibold text-base md:text-lg">SUBSCRIBE TO OUR NEWSLETTER</h3>
               <p className="text-sm text-white/70">Get the latest updates, news and opportunities.</p>
             </div>
-            <div className="flex gap-2 w-full md:w-auto">
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
               <Input
                 type="email"
                 placeholder="Enter your email"
-                className="bg-white/10 border-white/30 text-white placeholder:text-white/50 w-full md:w-64"
+                className="bg-white/10 border-white/30 text-white placeholder:text-white/50 w-full sm:w-64"
               />
-              <Button className="bg-[#c4a43a] hover:bg-[#b3943a] text-white font-semibold">
+              <Button className="bg-[#c4a43a] hover:bg-[#b3943a] text-white font-semibold w-full sm:w-auto">
                 SUBSCRIBE
               </Button>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
               <span className="text-sm text-white/70">FOLLOW US</span>
               <div className="flex gap-3">
                 <Link href="#" className="hover:text-[#c4a43a] transition-colors">

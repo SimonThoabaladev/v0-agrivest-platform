@@ -83,34 +83,34 @@ export function AdminDashboard({ services, products, professionals, news, users,
         </div>
       </header>
 
-      <main className="container mx-auto py-8 px-4">
+      <main className="container mx-auto py-4 md:py-8 px-4">
         <Tabs defaultValue="services" className="space-y-6">
-          <TabsList className="grid grid-cols-7 w-full max-w-3xl">
-            <TabsTrigger value="services" className="flex items-center gap-2">
+          <TabsList className="grid grid-cols-4 sm:grid-cols-7 w-full gap-1 h-auto p-1">
+            <TabsTrigger value="services" className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 py-2 px-1 sm:px-3 text-xs">
               <Settings className="h-4 w-4" />
               <span className="hidden sm:inline">Services</span>
             </TabsTrigger>
-            <TabsTrigger value="products" className="flex items-center gap-2">
+            <TabsTrigger value="products" className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 py-2 px-1 sm:px-3 text-xs">
               <Package className="h-4 w-4" />
               <span className="hidden sm:inline">Products</span>
             </TabsTrigger>
-            <TabsTrigger value="professionals" className="flex items-center gap-2">
+            <TabsTrigger value="professionals" className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 py-2 px-1 sm:px-3 text-xs">
               <Briefcase className="h-4 w-4" />
               <span className="hidden sm:inline">Experts</span>
             </TabsTrigger>
-            <TabsTrigger value="news" className="flex items-center gap-2">
+            <TabsTrigger value="news" className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 py-2 px-1 sm:px-3 text-xs">
               <Newspaper className="h-4 w-4" />
               <span className="hidden sm:inline">News</span>
             </TabsTrigger>
-            <TabsTrigger value="investments" className="flex items-center gap-2">
+            <TabsTrigger value="investments" className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 py-2 px-1 sm:px-3 text-xs">
               <Handshake className="h-4 w-4" />
               <span className="hidden sm:inline">Investments</span>
             </TabsTrigger>
-            <TabsTrigger value="bookings" className="flex items-center gap-2">
+            <TabsTrigger value="bookings" className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 py-2 px-1 sm:px-3 text-xs">
               <CalendarDays className="h-4 w-4" />
               <span className="hidden sm:inline">Bookings</span>
             </TabsTrigger>
-            <TabsTrigger value="users" className="flex items-center gap-2">
+            <TabsTrigger value="users" className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 py-2 px-1 sm:px-3 text-xs">
               <Users className="h-4 w-4" />
               <span className="hidden sm:inline">Users</span>
             </TabsTrigger>

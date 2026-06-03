@@ -57,8 +57,8 @@ export default function Header() {
     <header className="bg-white shadow-sm sticky top-0 z-50">
       {/* Top Bar */}
       <div className="bg-white border-b border-border">
-        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+        <div className="container mx-auto px-4 py-2 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
             <span>Convening Partner of</span>
             <span className="font-semibold text-foreground">
               LESOTHO AGRICULTURAL SYMPOSIUM 2026

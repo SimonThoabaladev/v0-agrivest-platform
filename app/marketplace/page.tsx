@@ -15,7 +15,7 @@ import { eq } from "drizzle-orm"
 
 export const dynamic = 'force-dynamic'
 
-const ADMIN_EMAILS = ['sellosthoabala@gmail.com', 'simonthoabala208@gmail.com']
+const ADMIN_EMAILS = ['simonthoabala208@gmail.com']
 
 async function getIsAdmin() {
   try {

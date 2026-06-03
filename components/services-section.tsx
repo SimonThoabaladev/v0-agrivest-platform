@@ -65,21 +65,21 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-12 md:py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-10">
-          <h2 className="text-3xl font-bold text-[#1a3a1a] flex items-center gap-2">
-            <span className="w-8 h-1 bg-[#c4a43a]"></span>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 md:mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1a3a1a] flex items-center gap-2">
+            <span className="w-6 md:w-8 h-1 bg-[#c4a43a]"></span>
             OUR SERVICES
-            <span className="w-8 h-1 bg-[#c4a43a]"></span>
+            <span className="w-6 md:w-8 h-1 bg-[#c4a43a]"></span>
           </h2>
-          <Button variant="outline" className="text-[#1a3a1a] border-[#1a3a1a] hover:bg-[#1a3a1a] hover:text-white">
+          <Button variant="outline" className="text-[#1a3a1a] border-[#1a3a1a] hover:bg-[#1a3a1a] hover:text-white text-sm">
             VIEW ALL SERVICES
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
           {services.map((service) => (
             <div
               key={service.title}
