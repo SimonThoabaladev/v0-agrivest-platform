@@ -13,7 +13,7 @@ export function CapitalLinkageSection() {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-[#1a3a1a] text-center mb-10 flex items-center justify-center gap-2">
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#1a3a1a] text-center mb-10 flex flex-wrap items-center justify-center gap-2">
           <span className="w-8 h-1 bg-[#c4a43a]"></span>
           CAPITAL LINKAGE: TRIPARTITE AGREEMENT
           <span className="w-8 h-1 bg-[#c4a43a]"></span>
@@ -23,7 +23,7 @@ export function CapitalLinkageSection() {
           {/* Diagram */}
           <div className="relative">
             <div className="flex items-center justify-center">
-              <div className="grid grid-cols-3 gap-8 items-center w-full max-w-md">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 items-center w-full max-w-md">
                 {/* Investors */}
                 <div className="text-center">
                   <div className="w-20 h-20 mx-auto bg-[#1a3a1a] rounded-full flex items-center justify-center mb-3">
@@ -60,7 +60,7 @@ export function CapitalLinkageSection() {
             </div>
 
             {/* Connecting Lines */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
+            <div className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
               <svg className="w-full h-full" viewBox="0 0 400 200" fill="none">
                 <path
                   d="M80 100 L200 100"
