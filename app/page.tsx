@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/hero-section"
 import { ServicesSection } from "@/components/services-section"
 import { FeaturesSection } from "@/components/features-section"
+import { ImpactSection } from "@/components/impact-section"
 import { CapitalLinkageSection } from "@/components/capital-linkage-section"
 import { MarketplacePreview } from "@/components/marketplace-preview"
 import { ProfessionalsPreview } from "@/components/professionals-preview"
@@ -17,6 +18,7 @@ export default function Page() {
       <main>
         <HeroSection />
         <ServicesSection />
+        <ImpactSection />
         <FeaturesSection />
         <MarketplacePreview />
         <ProfessionalsPreview />
