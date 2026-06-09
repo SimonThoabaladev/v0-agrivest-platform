@@ -65,21 +65,21 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-12 sm:py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-10">
-          <h2 className="text-3xl font-bold text-[#1a3a1a] flex items-center gap-2">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8 sm:mb-10">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#1a3a1a] flex items-center gap-2 text-balance">
             <span className="w-8 h-1 bg-[#c4a43a]"></span>
             OUR SERVICES
             <span className="w-8 h-1 bg-[#c4a43a]"></span>
           </h2>
-          <Button variant="outline" className="text-[#1a3a1a] border-[#1a3a1a] hover:bg-[#1a3a1a] hover:text-white">
+          <Button variant="outline" className="w-full sm:w-auto text-[#1a3a1a] border-[#1a3a1a] hover:bg-[#1a3a1a] hover:text-white">
             VIEW ALL SERVICES
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {services.map((service) => (
             <div
               key={service.title}

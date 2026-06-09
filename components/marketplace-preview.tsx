@@ -56,23 +56,23 @@ const products = [
 
 export function MarketplacePreview() {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-12 sm:py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-10">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8 sm:mb-10">
           <div>
-            <h2 className="text-3xl font-bold text-[#1a3a1a] flex items-center gap-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#1a3a1a] flex items-center gap-2 text-balance">
               <span className="w-8 h-1 bg-[#c4a43a]"></span>
               MARKETPLACE
             </h2>
-            <p className="text-muted-foreground mt-2">Buy, sell and trade agricultural products with ease</p>
+            <p className="text-muted-foreground mt-2 text-pretty">Buy, sell and trade agricultural products with ease</p>
           </div>
-          <Button variant="outline" className="text-[#1a3a1a] border-[#1a3a1a] hover:bg-[#1a3a1a] hover:text-white">
+          <Button variant="outline" className="w-full sm:w-auto text-[#1a3a1a] border-[#1a3a1a] hover:bg-[#1a3a1a] hover:text-white">
             VIEW ALL PRODUCTS
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {products.map((product) => (
             <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative h-40">

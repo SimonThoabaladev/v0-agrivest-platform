@@ -1,125 +1,101 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Star, MapPin, Calendar, CheckCircle } from "lucide-react"
+import { ArrowRight, MapPin, Calendar, CheckCircle, Users } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { getProfessionals } from "@/app/actions/public"
 
-const professionals = [
-  {
-    id: 1,
-    name: "Dr. Thabo Mokoena",
-    specialty: "Veterinary Services",
-    rating: 4.9,
-    reviews: 127,
-    location: "Maseru",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=200&h=200&fit=crop",
-    available: true,
-    verified: true,
-    hourlyRate: "M 350",
-  },
-  {
-    id: 2,
-    name: "Mme Lineo Ntho",
-    specialty: "Crop Specialist",
-    rating: 4.8,
-    reviews: 89,
-    location: "Leribe",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&h=200&fit=crop",
-    available: true,
-    verified: true,
-    hourlyRate: "M 280",
-  },
-  {
-    id: 3,
-    name: "Ntate Moshe Rabolele",
-    specialty: "Farm Management",
-    rating: 4.7,
-    reviews: 156,
-    location: "Berea",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
-    available: false,
-    verified: true,
-    hourlyRate: "M 400",
-  },
-  {
-    id: 4,
-    name: "Dr. Palesa Mofokeng",
-    specialty: "Animal Nutrition",
-    rating: 4.9,
-    reviews: 203,
-    location: "Maseru",
-    image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=200&h=200&fit=crop",
-    available: true,
-    verified: true,
-    hourlyRate: "M 320",
-  },
-]
+export async function ProfessionalsPreview() {
+  const allProfessionals = await getProfessionals()
+  const professionals = allProfessionals.slice(0, 4)
 
-export function ProfessionalsPreview() {
   return (
-    <section className="py-16 bg-muted/30">
+    <section className="py-12 sm:py-16 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-10">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8 sm:mb-10">
           <div>
-            <h2 className="text-3xl font-bold text-[#1a3a1a] flex items-center gap-2">
-              <span className="w-8 h-1 bg-[#c4a43a]"></span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#1a3a1a] flex items-center gap-2 text-balance">
+              <span className="w-8 h-1 bg-[#c4a43a]" />
               PROFESSIONALS
             </h2>
-            <p className="text-muted-foreground mt-2">Connect with verified agricultural experts and book services</p>
+            <p className="text-muted-foreground mt-2 text-pretty">
+              Connect with verified agricultural experts and book services
+            </p>
           </div>
-          <Button variant="outline" className="text-[#1a3a1a] border-[#1a3a1a] hover:bg-[#1a3a1a] hover:text-white">
-            VIEW ALL EXPERTS
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
+          <Link href="/professionals" className="shrink-0">
+            <Button
+              variant="outline"
+              className="w-full sm:w-auto text-[#1a3a1a] border-[#1a3a1a] hover:bg-[#1a3a1a] hover:text-white"
+            >
+              VIEW ALL EXPERTS
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {professionals.map((professional) => (
-            <Card key={professional.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-              <CardContent className="p-6 text-center">
-                <div className="relative w-24 h-24 mx-auto mb-4">
-                  <img
-                    src={professional.image}
-                    alt={professional.name}
-                    className="w-full h-full object-cover rounded-full"
-                  />
-                  {professional.verified && (
+        {professionals.length === 0 ? (
+          <div className="text-center py-12 sm:py-16">
+            <div className="w-20 h-20 mx-auto mb-4 bg-muted rounded-full flex items-center justify-center">
+              <Users className="w-10 h-10 text-muted-foreground" />
+            </div>
+            <h3 className="text-lg sm:text-xl font-semibold text-[#1a3a1a] mb-2">No Professionals Yet</h3>
+            <p className="text-muted-foreground">Check back soon for verified agricultural experts.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {professionals.map((professional) => (
+              <Card key={professional.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                <CardContent className="p-6 text-center">
+                  <div className="relative w-24 h-24 mx-auto mb-4">
+                    <Image
+                      src={professional.image || "/placeholder-user.jpg"}
+                      alt={professional.name}
+                      fill
+                      sizes="96px"
+                      className="object-cover rounded-full"
+                    />
                     <div className="absolute -bottom-1 -right-1 bg-[#c4a43a] rounded-full p-1">
                       <CheckCircle className="h-4 w-4 text-white" />
                     </div>
+                  </div>
+                  <h3 className="font-semibold text-[#1a3a1a] mb-1 text-balance">{professional.name}</h3>
+                  <p className="text-sm text-primary font-medium mb-2">{professional.title}</p>
+                  <Badge variant="secondary" className="mb-3">
+                    {professional.specialization}
+                  </Badge>
+                  {professional.phone && (
+                    <div className="flex items-center justify-center gap-1 text-sm text-muted-foreground mb-2">
+                      <MapPin className="h-3 w-3" />
+                      <span>{professional.phone}</span>
+                    </div>
                   )}
-                </div>
-                <h3 className="font-semibold text-[#1a3a1a] mb-1">{professional.name}</h3>
-                <Badge variant="secondary" className="mb-2">{professional.specialty}</Badge>
-                <div className="flex items-center justify-center gap-2 text-sm mb-2">
-                  <Star className="h-4 w-4 text-[#c4a43a] fill-[#c4a43a]" />
-                  <span className="font-medium">{professional.rating}</span>
-                  <span className="text-muted-foreground">({professional.reviews} reviews)</span>
-                </div>
-                <div className="flex items-center justify-center gap-1 text-sm text-muted-foreground mb-3">
-                  <MapPin className="h-3 w-3" />
-                  <span>{professional.location}</span>
-                </div>
-                <div className="text-lg font-bold text-[#1a3a1a] mb-1">
-                  {professional.hourlyRate}
-                  <span className="text-xs font-normal text-muted-foreground">/hour</span>
-                </div>
-                <Badge className={professional.available ? "bg-green-600" : "bg-gray-400"}>
-                  {professional.available ? "Available" : "Busy"}
-                </Badge>
-              </CardContent>
-              <CardFooter className="p-4 pt-0">
-                <Button
-                  size="sm"
-                  className="w-full bg-[#1a3a1a] hover:bg-[#0d1f0d] text-white"
-                  disabled={!professional.available}
-                >
-                  <Calendar className="h-4 w-4 mr-2" />
-                  Book Consultation
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+                  {professional.rate && (
+                    <div className="text-lg font-bold text-[#1a3a1a] mb-1">
+                      M{Number(professional.rate).toFixed(2)}
+                      <span className="text-xs font-normal text-muted-foreground">/session</span>
+                    </div>
+                  )}
+                  <Badge className={professional.available ? "bg-green-600" : "bg-gray-400"}>
+                    {professional.available ? "Available" : "Busy"}
+                  </Badge>
+                </CardContent>
+                <CardFooter className="p-4 pt-0">
+                  <Link href={`/professionals/${professional.id}/book`} className="w-full">
+                    <Button
+                      size="sm"
+                      className="w-full bg-[#1a3a1a] hover:bg-[#0d1f0d] text-white"
+                      disabled={!professional.available}
+                    >
+                      <Calendar className="h-4 w-4 mr-2" />
+                      Book Consultation
+                    </Button>
+                  </Link>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )

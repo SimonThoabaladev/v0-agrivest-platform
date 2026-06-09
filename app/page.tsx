@@ -10,6 +10,8 @@ import { SubscriptionSection } from "@/components/subscription-section"
 import { SymposiumBanner } from "@/components/symposium-banner"
 import { ContactSection } from "@/components/contact-section"
 
+export const dynamic = 'force-dynamic'
+
 export default function Page() {
   return (
     <div className="min-h-screen bg-background">
