@@ -10,9 +10,8 @@ export async function POST(request: NextRequest) {
   try {
     // Check if user is authenticated
     const session = await auth.api.getSession({ headers: await headers() })
-    
     if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized - Please sign in to upload' }, { status: 401 })
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     // Check admin role OR admin email
@@ -53,8 +52,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ url: blob.url })
   } catch (error) {
     console.error('Upload error:', error)
-    return NextResponse.json({ 
-      error: error instanceof Error ? error.message : 'Upload failed' 
-    }, { status: 500 })
+    return NextResponse.json({ error: 'Upload failed' }, { status: 500 })
   }
 }

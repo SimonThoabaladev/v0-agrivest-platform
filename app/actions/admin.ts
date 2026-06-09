@@ -7,21 +7,10 @@ import { eq, desc } from 'drizzle-orm'
 import { headers } from 'next/headers'
 import { revalidatePath } from 'next/cache'
 
-// Admin emails that bypass role check
-const ADMIN_EMAILS = ['sellosthoabala@gmail.com', 'simonthoabala208@gmail.com']
-
 async function getAdminUser() {
   const session = await auth.api.getSession({ headers: await headers() })
   if (!session?.user) throw new Error('Unauthorized')
   
-  const userEmail = session.user.email
-  
-  // Check if user is in admin emails list
-  if (userEmail && ADMIN_EMAILS.includes(userEmail)) {
-    return session.user
-  }
-  
-  // Otherwise check database role
   const users = await db
     .select()
     .from(user)

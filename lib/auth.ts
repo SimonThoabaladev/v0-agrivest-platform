@@ -16,7 +16,7 @@ const getBaseURL = () => {
 
 // Get trusted origins
 const getTrustedOrigins = () => {
-  const origins: string[] = ['http://localhost:3000']
+  const origins: string[] = []
   if (process.env.V0_RUNTIME_URL) origins.push(process.env.V0_RUNTIME_URL)
   if (process.env.VERCEL_URL) origins.push(`https://${process.env.VERCEL_URL}`)
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) origins.push(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
@@ -64,8 +64,8 @@ export const auth = betterAuth({
   },
   advanced: {
     defaultCookieAttributes: {
-      sameSite: 'lax',
-      secure: process.env.NODE_ENV === 'production' || !!process.env.V0_RUNTIME_URL,
+      sameSite: process.env.NODE_ENV === 'development' ? 'none' : 'lax',
+      secure: true,
     },
   },
 })

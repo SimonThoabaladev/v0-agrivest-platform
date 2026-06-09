@@ -44,9 +44,8 @@ export function HeroSection() {
               </h1>
               
               <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl leading-relaxed">
-                An agribusiness advisory and systems development platform supporting farmers,
-                agribusinesses, and investors in building structured, productive, and sustainable
-                agricultural enterprises in Lesotho.
+                Your all-in-one platform for agricultural products, expert advisory, business
+                solutions, investment opportunities and more.
               </p>
               
               <div className="flex flex-wrap gap-4">
@@ -71,16 +70,16 @@ export function HeroSection() {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-white/20">
                 <div>
-                  <div className="text-3xl font-bold text-[#c4a43a]">600+</div>
-                  <div className="text-sm text-white/70">Farmers Engaged</div>
+                  <div className="text-3xl font-bold text-[#c4a43a]">500+</div>
+                  <div className="text-sm text-white/70">Farmers Served</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-[#c4a43a]">300+</div>
-                  <div className="text-sm text-white/70">Consultations Conducted</div>
+                  <div className="text-3xl font-bold text-[#c4a43a]">50+</div>
+                  <div className="text-sm text-white/70">Expert Advisors</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-[#c4a43a]">120+</div>
-                  <div className="text-sm text-white/70">Startups Supported</div>
+                  <div className="text-3xl font-bold text-[#c4a43a]">M10M+</div>
+                  <div className="text-sm text-white/70">Investment Linked</div>
                 </div>
               </div>
             </div>

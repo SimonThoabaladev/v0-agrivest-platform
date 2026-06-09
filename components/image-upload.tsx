@@ -47,12 +47,12 @@ export function ImageUpload({ value, onChange, label = 'Image' }: ImageUploadPro
         body: formData,
       })
 
-      const data = await response.json()
-
       if (!response.ok) {
+        const data = await response.json()
         throw new Error(data.error || 'Upload failed')
       }
 
+      const data = await response.json()
       onChange(data.url)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Upload failed')

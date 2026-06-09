@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Star, MapPin, Calendar, CheckCircle, User } from "lucide-react"
+import { ArrowRight, Star, MapPin, Calendar, CheckCircle } from "lucide-react"
 
 const professionals = [
   {
@@ -58,15 +58,15 @@ export function ProfessionalsPreview() {
   return (
     <section className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10">
+        <div className="flex items-center justify-between mb-10">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1a3a1a] flex items-center gap-2">
+            <h2 className="text-3xl font-bold text-[#1a3a1a] flex items-center gap-2">
               <span className="w-8 h-1 bg-[#c4a43a]"></span>
               PROFESSIONALS
             </h2>
             <p className="text-muted-foreground mt-2">Connect with verified agricultural experts and book services</p>
           </div>
-          <Button variant="outline" className="text-[#1a3a1a] border-[#1a3a1a] hover:bg-[#1a3a1a] hover:text-white w-full sm:w-auto">
+          <Button variant="outline" className="text-[#1a3a1a] border-[#1a3a1a] hover:bg-[#1a3a1a] hover:text-white">
             VIEW ALL EXPERTS
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
@@ -77,9 +77,11 @@ export function ProfessionalsPreview() {
             <Card key={professional.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <CardContent className="p-6 text-center">
                 <div className="relative w-24 h-24 mx-auto mb-4">
-                  <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
-                    <User className="w-12 h-12 text-muted-foreground" />
-                  </div>
+                  <img
+                    src={professional.image}
+                    alt={professional.name}
+                    className="w-full h-full object-cover rounded-full"
+                  />
                   {professional.verified && (
                     <div className="absolute -bottom-1 -right-1 bg-[#c4a43a] rounded-full p-1">
                       <CheckCircle className="h-4 w-4 text-white" />

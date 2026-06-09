@@ -72,7 +72,7 @@ export function SubscriptionSection() {
               key={plan.name}
               className={`relative overflow-hidden ${
                 plan.highlighted
-                  ? "border-[#c4a43a] border-2 shadow-xl md:scale-105"
+                  ? "border-[#c4a43a] border-2 shadow-xl scale-105"
                   : "border-white/20 bg-white/5"
               }`}
             >
