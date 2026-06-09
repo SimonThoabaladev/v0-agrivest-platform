@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Star, MapPin, Calendar, CheckCircle } from "lucide-react"
+import { ArrowRight, Star, MapPin, Calendar, CheckCircle, User } from "lucide-react"
 
 const professionals = [
   {
@@ -77,11 +77,9 @@ export function ProfessionalsPreview() {
             <Card key={professional.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <CardContent className="p-6 text-center">
                 <div className="relative w-24 h-24 mx-auto mb-4">
-                  <img
-                    src={professional.image}
-                    alt={professional.name}
-                    className="w-full h-full object-cover rounded-full"
-                  />
+                  <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
+                    <User className="w-12 h-12 text-muted-foreground" />
+                  </div>
                   {professional.verified && (
                     <div className="absolute -bottom-1 -right-1 bg-[#c4a43a] rounded-full p-1">
                       <CheckCircle className="h-4 w-4 text-white" />

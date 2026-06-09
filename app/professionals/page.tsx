@@ -1,5 +1,4 @@
 import { getProfessionals } from "@/app/actions/public"
-import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -74,13 +73,8 @@ export default async function ProfessionalsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {professionals.map((professional) => (
                   <Card key={professional.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                    <div className="relative h-64">
-                      <Image
-                        src={professional.image}
-                        alt={professional.name}
-                        fill
-                        className="object-cover"
-                      />
+                    <div className="relative h-64 bg-muted flex items-center justify-center">
+                      <Users className="h-20 w-20 text-muted-foreground" />
                     </div>
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-2">
