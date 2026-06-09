@@ -74,11 +74,12 @@ export default async function ProfessionalsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {professionals.map((professional) => (
                   <Card key={professional.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                    <div className="relative h-64">
+                    <div className="relative h-64 bg-muted">
                       <Image
-                        src={professional.image}
+                        src={professional.image || "/placeholder-user.jpg"}
                         alt={professional.name}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover"
                       />
                     </div>

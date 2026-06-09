@@ -53,6 +53,11 @@ export default function Header() {
   // Check admin role OR admin email
   const isAdmin = (session?.user as any)?.role === "admin" || ADMIN_EMAILS.includes(session?.user?.email || '')
 
+  const isSignedIn = !!session?.user
+
+  // When signed out, every nav item (except HOME) points to the sign-in page
+  const resolveHref = (href: string) => (isSignedIn || href === "/" ? href : "/sign-in")
+
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       {/* Top Bar */}
@@ -137,7 +142,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) =>
-              item.dropdown ? (
+              item.dropdown && isSignedIn ? (
                 <DropdownMenu key={item.label}>
                   <DropdownMenuTrigger asChild>
                     <button className="flex items-center gap-1 px-3 py-2 text-xs font-medium text-foreground hover:text-primary hover:bg-muted rounded transition-colors">
@@ -158,7 +163,7 @@ export default function Header() {
               ) : (
                 <Link
                   key={item.label}
-                  href={item.href}
+                  href={resolveHref(item.href)}
                   className={`px-3 py-2 text-xs font-medium rounded transition-colors ${
                     item.label === "HOME"
                       ? "bg-primary text-primary-foreground"
@@ -188,7 +193,7 @@ export default function Header() {
               {navItems.map((item) => (
                 <Link
                   key={item.label}
-                  href={item.href}
+                  href={resolveHref(item.href)}
                   className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-muted rounded"
                   onClick={() => setIsMenuOpen(false)}
                 >
