@@ -30,12 +30,12 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'Phone Numbers',
-    details: ['+266 5800 6429', '+266 2231 2345'],
+    details: ['+266 568 06 429'],
   },
   {
     icon: Mail,
     title: 'Email Addresses',
-    details: ['info@agrivest.co.ls', 'support@agrivest.co.ls'],
+    details: ['letsosaren@gmail.com'],
   },
   {
     icon: Clock,
@@ -267,11 +267,11 @@ export default function ContactPage() {
                       call our hotline.
                     </p>
                     <a 
-                      href="tel:+26658006429" 
+                      href="tel:+26656806429" 
                       className="inline-flex items-center gap-2 bg-[#c4a43a] text-white px-4 py-2 rounded-lg hover:bg-[#b3943a] transition-colors"
                     >
                       <Phone className="h-4 w-4" />
-                      +266 5800 6429
+                      +266 568 06 429
                     </a>
                   </CardContent>
                 </Card>
