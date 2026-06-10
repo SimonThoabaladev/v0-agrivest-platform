@@ -6,6 +6,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { auth } from "@/lib/auth"
 import { headers } from "next/headers"
+import { requireAuth } from "@/lib/auth-guard"
 import Link from "next/link"
 import { Mail, Phone, Plus, Users } from "lucide-react"
 
@@ -14,6 +15,7 @@ export const dynamic = 'force-dynamic'
 const ADMIN_EMAILS = ['sellosthoabala@gmail.com', 'simonthoabala208@gmail.com']
 
 export default async function ProfessionalsPage() {
+  await requireAuth('/professionals')
   const professionals = await getProfessionals()
   const session = await auth.api.getSession({ headers: await headers() })
   const isAdmin = (session?.user as any)?.role === 'admin' || ADMIN_EMAILS.includes(session?.user?.email || '')

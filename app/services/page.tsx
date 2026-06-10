@@ -5,6 +5,7 @@ import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
+import { requireAuth } from '@/lib/auth-guard'
 import Link from 'next/link'
 import { 
   Briefcase, 
@@ -52,6 +53,7 @@ const categoryColors: Record<string, string> = {
 }
 
 export default async function ServicesPage() {
+  await requireAuth('/services')
   const services = await getServices()
   const session = await auth.api.getSession({ headers: await headers() })
   const isAdmin = (session?.user as any)?.role === 'admin' || ADMIN_EMAILS.includes(session?.user?.email || '')

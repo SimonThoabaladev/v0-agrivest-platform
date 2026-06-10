@@ -392,6 +392,8 @@ function ProductsTab({ products }: { products: any[] }) {
                       <SelectItem value="equipment">Equipment</SelectItem>
                       <SelectItem value="feed">Animal Feed</SelectItem>
                       <SelectItem value="fertilizer">Fertilizers</SelectItem>
+                      <SelectItem value="Farm Feeds">Farm Feeds</SelectItem>
+                      <SelectItem value="Medication">Medication</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

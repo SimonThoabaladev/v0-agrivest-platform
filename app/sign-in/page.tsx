@@ -5,9 +5,14 @@ import { AuthForm } from '@/components/auth-form'
 
 export const dynamic = 'force-dynamic'
 
-export default async function SignInPage() {
+export default async function SignInPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ redirect?: string }>
+}) {
   const session = await auth.api.getSession({ headers: await headers() })
-  if (session?.user) redirect('/')
+  const { redirect: redirectTo } = await searchParams
+  if (session?.user) redirect(redirectTo || '/')
 
-  return <AuthForm mode="sign-in" />
+  return <AuthForm mode="sign-in" redirectTo={redirectTo} />
 }

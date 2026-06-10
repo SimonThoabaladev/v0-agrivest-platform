@@ -1,4 +1,4 @@
-import { getProducts } from "@/app/actions/public"
+import { getFarmFeedProducts } from "@/app/actions/public"
 import Image from "next/image"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -23,16 +23,16 @@ async function getIsAdmin() {
     const session = await auth.api.getSession({ headers: await headers() })
     if (!session?.user?.id) return false
     const dbUser = await db.select().from(user).where(eq(user.id, session.user.id)).limit(1)
-    // Check role OR email
     return dbUser[0]?.role === 'admin' || ADMIN_EMAILS.includes(session.user.email || '')
   } catch {
     return false
   }
 }
 
-export default async function MarketplacePage() {
-  await requireAuth('/marketplace')
-  const products = await getProducts()
+export default async function FarmFeedsPage() {
+  await requireAuth('/farm-feeds')
+
+  const products = await getFarmFeedProducts()
   const isAdmin = await getIsAdmin()
 
   return (
@@ -42,12 +42,12 @@ export default async function MarketplacePage() {
         {/* Hero Section */}
         <section className="bg-primary py-16">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl font-bold text-primary-foreground mb-4">
-              AgriVest Marketplace
+            <h1 className="text-3xl sm:text-4xl font-bold text-primary-foreground mb-4">
+              Farm Feeds &amp; Medication
             </h1>
             <p className="text-primary-foreground/80 max-w-2xl mx-auto">
-              Buy and trade verified agricultural products with ease. From livestock to farm equipment, 
-              find everything you need for your agricultural business.
+              Quality animal feeds, supplements and veterinary medication to keep your livestock
+              healthy and productive. Sourced from trusted suppliers.
             </p>
           </div>
         </section>
@@ -55,7 +55,7 @@ export default async function MarketplacePage() {
         {/* Products Grid */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
               <h2 className="text-2xl font-bold text-foreground">Available Products</h2>
               <div className="flex items-center gap-3">
                 {isAdmin && (
@@ -78,7 +78,7 @@ export default async function MarketplacePage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">No Products Available</h3>
-                <p className="text-muted-foreground mb-6">Check back later for new products.</p>
+                <p className="text-muted-foreground mb-6">Check back later for new farm feeds and medication.</p>
                 {isAdmin && (
                   <Button asChild size="lg">
                     <Link href="/admin?tab=products">

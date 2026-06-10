@@ -2,10 +2,18 @@
 
 import { db } from '@/lib/db'
 import { products, professionals, news, services } from '@/lib/db/schema'
-import { desc, eq } from 'drizzle-orm'
+import { desc, eq, inArray } from 'drizzle-orm'
 
 export async function getProducts() {
   return db.select().from(products).orderBy(desc(products.createdAt))
+}
+
+export async function getFarmFeedProducts() {
+  return db
+    .select()
+    .from(products)
+    .where(inArray(products.category, ['Farm Feeds', 'Medication']))
+    .orderBy(desc(products.createdAt))
 }
 
 export async function getProductsByCategory(category: string) {
