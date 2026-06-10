@@ -32,7 +32,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Badge } from '@/components/ui/badge'
-import { Plus, Pencil, Trash2, Users, Package, Briefcase, Newspaper, Settings, ArrowLeft, Handshake, CalendarDays } from 'lucide-react'
+import { Plus, Pencil, Trash2, Users, Package, Briefcase, Newspaper, Settings, ArrowLeft, Handshake, CalendarDays, Wheat } from 'lucide-react'
 import { ImageUpload } from '@/components/image-upload'
 import {
   createService,
@@ -85,7 +85,7 @@ export function AdminDashboard({ services, products, professionals, news, users,
 
       <main className="container mx-auto py-8 px-4">
         <Tabs defaultValue="services" className="space-y-6">
-          <TabsList className="grid grid-cols-7 w-full max-w-3xl">
+          <TabsList className="grid grid-cols-8 w-full max-w-4xl">
             <TabsTrigger value="services" className="flex items-center gap-2">
               <Settings className="h-4 w-4" />
               <span className="hidden sm:inline">Services</span>
@@ -93,6 +93,10 @@ export function AdminDashboard({ services, products, professionals, news, users,
             <TabsTrigger value="products" className="flex items-center gap-2">
               <Package className="h-4 w-4" />
               <span className="hidden sm:inline">Products</span>
+            </TabsTrigger>
+            <TabsTrigger value="farm-feeds" className="flex items-center gap-2">
+              <Wheat className="h-4 w-4" />
+              <span className="hidden sm:inline">Farm Feeds</span>
             </TabsTrigger>
             <TabsTrigger value="professionals" className="flex items-center gap-2">
               <Briefcase className="h-4 w-4" />
@@ -122,6 +126,10 @@ export function AdminDashboard({ services, products, professionals, news, users,
 
           <TabsContent value="products">
             <ProductsTab products={products} />
+          </TabsContent>
+
+          <TabsContent value="farm-feeds">
+            <FarmFeedsTab products={products} />
           </TabsContent>
 
           <TabsContent value="professionals">
@@ -453,6 +461,178 @@ function ProductsTab({ products }: { products: any[] }) {
               <TableRow>
                 <TableCell colSpan={6} className="text-center text-muted-foreground py-8">
                   No products yet. Add your first product.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
+  )
+}
+
+function FarmFeedsTab({ products }: { products: any[] }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const [editingProduct, setEditingProduct] = useState<any>(null)
+  const [loading, setLoading] = useState(false)
+  const [imageUrl, setImageUrl] = useState('')
+
+  const feedProducts = products.filter(
+    (p) => p.category === 'Farm Feeds' || p.category === 'Medication'
+  )
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    if (!imageUrl) {
+      alert('Please upload a product image')
+      return
+    }
+    setLoading(true)
+    const formData = new FormData(e.currentTarget)
+    const data = {
+      name: formData.get('name') as string,
+      description: formData.get('description') as string,
+      price: formData.get('price') as string,
+      image: imageUrl,
+      category: formData.get('category') as string,
+      stock: parseInt(formData.get('stock') as string) || 0,
+    }
+
+    if (editingProduct) {
+      await updateProduct(editingProduct.id, data)
+    } else {
+      await createProduct(data)
+    }
+    setLoading(false)
+    setIsOpen(false)
+    setEditingProduct(null)
+    setImageUrl('')
+  }
+
+  function handleOpenChange(open: boolean) {
+    setIsOpen(open)
+    if (!open) {
+      setEditingProduct(null)
+      setImageUrl('')
+    }
+  }
+
+  function handleEdit(product: any) {
+    setEditingProduct(product)
+    setImageUrl(product.image || '')
+    setIsOpen(true)
+  }
+
+  async function handleDelete(id: number) {
+    if (confirm('Are you sure you want to delete this item?')) {
+      await deleteProduct(id)
+    }
+  }
+
+  return (
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between">
+        <div>
+          <CardTitle>Farm Feeds & Medication</CardTitle>
+          <CardDescription>Manage farm feed and medication products</CardDescription>
+        </div>
+        <Dialog open={isOpen} onOpenChange={handleOpenChange}>
+          <DialogTrigger asChild>
+            <Button onClick={() => { setEditingProduct(null); setImageUrl('') }}>
+              <Plus className="h-4 w-4 mr-2" />
+              Add Item
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>{editingProduct ? 'Edit Item' : 'Add Farm Feed / Medication'}</DialogTitle>
+              <DialogDescription>Fill in the details and upload a photo</DialogDescription>
+            </DialogHeader>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <ImageUpload
+                value={imageUrl}
+                onChange={setImageUrl}
+                label="Product Image"
+              />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="feed-name">Product Name</Label>
+                  <Input id="feed-name" name="name" defaultValue={editingProduct?.name} required />
+                </div>
+                <div>
+                  <Label htmlFor="feed-price">Price (M)</Label>
+                  <Input id="feed-price" name="price" type="number" step="0.01" defaultValue={editingProduct?.price} required />
+                </div>
+              </div>
+              <div>
+                <Label htmlFor="feed-description">Description</Label>
+                <Textarea id="feed-description" name="description" defaultValue={editingProduct?.description} required />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="feed-category">Category</Label>
+                  <Select name="category" defaultValue={editingProduct?.category || 'Farm Feeds'}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Farm Feeds">Farm Feeds</SelectItem>
+                      <SelectItem value="Medication">Medication</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="feed-stock">Stock Quantity</Label>
+                  <Input id="feed-stock" name="stock" type="number" defaultValue={editingProduct?.stock || 0} required />
+                </div>
+              </div>
+              <DialogFooter>
+                <Button type="submit" disabled={loading}>
+                  {loading ? 'Saving...' : 'Save Item'}
+                </Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
+      </CardHeader>
+      <CardContent>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Image</TableHead>
+              <TableHead>Name</TableHead>
+              <TableHead>Category</TableHead>
+              <TableHead>Price</TableHead>
+              <TableHead>Stock</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {feedProducts.map((product) => (
+              <TableRow key={product.id}>
+                <TableCell>
+                  <img src={product.image} alt={product.name} className="w-12 h-12 object-cover rounded" />
+                </TableCell>
+                <TableCell className="font-medium">{product.name}</TableCell>
+                <TableCell>
+                  <Badge variant="secondary">{product.category}</Badge>
+                </TableCell>
+                <TableCell>M {product.price}</TableCell>
+                <TableCell>{product.stock}</TableCell>
+                <TableCell className="text-right">
+                  <Button variant="ghost" size="icon" onClick={() => handleEdit(product)}>
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                  <Button variant="ghost" size="icon" onClick={() => handleDelete(product.id)}>
+                    <Trash2 className="h-4 w-4 text-destructive" />
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+            {feedProducts.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={6} className="text-center text-muted-foreground py-8">
+                  No farm feeds or medication yet. Add your first item.
                 </TableCell>
               </TableRow>
             )}
