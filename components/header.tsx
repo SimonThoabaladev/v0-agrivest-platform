@@ -31,6 +31,7 @@ const navItems = [
     ],
   },
   { label: "MARKETPLACE", href: "/marketplace" },
+  { label: "FARM FEEDS", href: "/farm-feeds" },
   { label: "PROFESSIONALS", href: "/professionals" },
   { label: "INVESTMENT", href: "/investments" },
   { label: "NEWS & EVENTS", href: "/news" },

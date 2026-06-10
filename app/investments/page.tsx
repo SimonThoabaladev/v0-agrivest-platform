@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
+import { requireAuth } from '@/lib/auth-guard'
 import { 
   Handshake, 
   TrendingUp, 
@@ -60,6 +61,7 @@ const landownerBenefits = [
 const ADMIN_EMAILS = ['sellosthoabala@gmail.com', 'simonthoabala208@gmail.com']
 
 export default async function InvestmentsPage() {
+  await requireAuth('/investments')
   const investmentsList = await getOpenInvestments()
   const session = await auth.api.getSession({ headers: await headers() })
   const isAdmin = (session?.user as any)?.role === 'admin' || ADMIN_EMAILS.includes(session?.user?.email || '')
