@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Star, MapPin, ShoppingCart } from "lucide-react"
+import Link from "next/link"
 
 const products = [
   {
@@ -66,9 +67,11 @@ export function MarketplacePreview() {
             </h2>
             <p className="text-muted-foreground mt-2">Buy, sell and trade agricultural products with ease</p>
           </div>
-          <Button variant="outline" className="text-[#1a3a1a] border-[#1a3a1a] hover:bg-[#1a3a1a] hover:text-white w-full sm:w-auto">
-            VIEW ALL PRODUCTS
-            <ArrowRight className="ml-2 h-4 w-4" />
+          <Button asChild variant="outline" className="text-[#1a3a1a] border-[#1a3a1a] hover:bg-[#1a3a1a] hover:text-white w-full sm:w-auto">
+            <Link href="/marketplace">
+              VIEW ALL PRODUCTS
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </Button>
         </div>
 
@@ -102,9 +105,11 @@ export function MarketplacePreview() {
                 </div>
               </CardContent>
               <CardFooter className="p-4 pt-0">
-                <Button size="sm" className="w-full bg-[#1a3a1a] hover:bg-[#0d1f0d] text-white">
-                  <ShoppingCart className="h-4 w-4 mr-2" />
-                  Add to Cart
+                <Button asChild size="sm" className="w-full bg-[#1a3a1a] hover:bg-[#0d1f0d] text-white">
+                  <Link href="/marketplace">
+                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    Shop Now
+                  </Link>
                 </Button>
               </CardFooter>
             </Card>
